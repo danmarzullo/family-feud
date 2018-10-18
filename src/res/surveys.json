@@ -1,0 +1,25 @@
+{
+  "surveys": [
+    {
+      "question": "Name an animal with three letters in its name.",
+      "answers": [
+          {"text":"Dog", "value":31},
+          {"text":"Cat", "value":26},
+          {"text":"Pig", "value":11},
+          {"text":"Cow", "value":8},
+          {"text":"Rat", "value":7},
+          {"text":"Bat", "value":4},
+          {"text":"Ant", "value":4},
+          {"text":"Bee", "value":2}
+      ]
+    },
+    {
+      "question": "Name a fruit.",
+      "answers": [
+          "Apple",
+          "Orange",
+          "Lemon"
+      ]
+    }
+  ]
+}

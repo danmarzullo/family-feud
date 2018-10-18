@@ -1,0 +1,24 @@
+
+/* table, td {
+    border: 1px solid black;
+} */
+
+.table-wrapper {
+    height: 100%;
+    display: flex;
+}
+
+.App {
+    height: 100vh;
+}
+
+#game_board {
+    width: 75%;
+    /* min-width: 25vh; */
+    max-width: 1000px;
+    height: 50%;
+    max-height: 500px;
+    margin: auto;
+    background-color: black;
+    perspective: 2000px;
+}
