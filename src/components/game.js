@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import KeyboardEventHandler from 'react-keyboard-event-handler'
 
 import Board from './board.js'
 
@@ -34,13 +35,7 @@ export default class Game extends Component {
         })
     }
 
-    componentWillReceiveProps(newProps) {
-        // console.log(newProps)
-        this.keyHandler(newProps.keyBuffer)
-    }
-
-    keyHandler(keyBuffer) {
-        const key = keyBuffer.shift()
+    keyHandler(key) {
         console.log("Key:" + key)
         if (key > 0 && key < 9) {
             const currentGame = this.state.currentGame
@@ -51,7 +46,12 @@ export default class Game extends Component {
 
     render() {
         return (
-            <Board survey={this.state.currentGame} keyHandler={this.props.keyHandler}></Board>
+            <div style={{height:"100%"}}> {/*necessary div for KeyboardEventHandler*/}
+                <Board survey={this.state.currentGame} keyHandler={this.props.keyHandler}/>
+                <KeyboardEventHandler
+                    handleKeys={['all']}
+                    onKeyEvent={(key, e) => this.keyHandler(key)}/>
+            </div>
         )
     }
 }
