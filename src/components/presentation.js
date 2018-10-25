@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import KeyboardEventHandler from 'react-keyboard-event-handler'
-
 import Board from './board.js'
+
+const {ipcRenderer} = window.require('electron')
 
 // const fs = require('fs');
 
 
-export default class Game extends Component {
+export default class Presentation extends Component {
     constructor(props) {
         super(props)
 
@@ -18,9 +19,20 @@ export default class Game extends Component {
         this.resetGame(currentGame)
 
         this.state = {
+            test: 'nothing',
             gameData: gameData,
             currentGame: currentGame
         }
+    }
+
+    componentDidMount() {
+        ipcRenderer.on("updateGameData", (event, gameData) => {
+            console.log(gameData);
+            this.setState({ 
+                gameData: gameData,
+                currentGame: gameData.surveys[0]
+            });
+          });
     }
 
     selectSurvey() {
@@ -44,10 +56,19 @@ export default class Game extends Component {
         }
     }
 
+    updateCurrentGame = (currentGame) => {
+        this.setState({currentGame: currentGame})
+    }
+
     render() {
         return (
             <div style={{height:"100%"}}> {/*necessary div for KeyboardEventHandler*/}
-                <Board survey={this.state.currentGame} keyHandler={this.props.keyHandler}/>
+                {/* {this.state.test} */}
+                <Board 
+                    survey={this.state.currentGame} 
+                    admin={false} 
+                    updateCurrentGame={this.updateCurrentGame}
+                    keyHandler={this.props.keyHandler}/>
                 <KeyboardEventHandler
                     handleKeys={['all']}
                     onKeyEvent={(key, e) => this.keyHandler(key)}/>
