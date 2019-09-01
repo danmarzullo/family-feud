@@ -30,7 +30,7 @@ export default class Presentation extends Component {
             console.log(gameData);
             this.setState({ 
                 gameData: gameData,
-                currentGame: gameData.surveys[0]
+                currentGame: gameData
             });
           });
     }
@@ -63,7 +63,6 @@ export default class Presentation extends Component {
     render() {
         return (
             <div style={{height:"100%"}}> {/*necessary div for KeyboardEventHandler*/}
-                {/* {this.state.test} */}
                 <Board 
                     survey={this.state.currentGame} 
                     admin={false} 

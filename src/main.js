@@ -1,8 +1,8 @@
 // import electron from 'electron'
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, ipcMain} = require('electron')
-const path = require('path');
-const url = require('url');
+const { app, BrowserWindow, ipcMain } = require('electron')
+const path = require('path')
+const url = require('url')
 // const ipcMain = require('electron').ipcMain;
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -11,17 +11,17 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({name: 'window-presentation', width: 800, height: 600})
+  let mainWindow = new BrowserWindow({ name: 'window-presentation', width: 800, height: 600 })
 
   // and load the index.html of the app.
   //   mainWindow.loadFile('index.html')
-  mainWindow.loadURL('http://localhost:3000?presentation');
-// const startUrl = process.env.ELECTRON_START_URL || url.format({
-//     pathname: path.join(__dirname, '/../build/index.html'),
-//     protocol: 'file:',
-//     slashes: true
-// });
-// mainWindow.loadURL(startUrl);
+  mainWindow.loadURL('http://localhost:3000?presentation')
+  // const startUrl = process.env.ELECTRON_START_URL || url.format({
+  //     pathname: path.join(__dirname, '/../build/index.html'),
+  //     protocol: 'file:',
+  //     slashes: true
+  // });
+  // mainWindow.loadURL(startUrl);
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
@@ -34,28 +34,10 @@ function createWindow () {
     mainWindow = null
   })
 
-
-  // Create the browser window.
-  judgeWindow = new BrowserWindow({name: 'window-console', width: 800, height: 600})
-
-  // and load the index.html of the app.
-  //   mainWindow.loadFile('index.html')
-  judgeWindow.loadURL('http://localhost:3000?console');
-// const startUrl = process.env.ELECTRON_START_URL || url.format({
-//     pathname: path.join(__dirname, '/../build/index.html'),
-//     protocol: 'file:',
-//     slashes: true
-// });
-// mainWindow.loadURL(startUrl);
-
-  // Open the DevTools.
+  let judgeWindow = new BrowserWindow({ name: 'window-console', width: 800, height: 600 })
+  judgeWindow.loadURL('http://localhost:3000?console')
   judgeWindow.webContents.openDevTools()
-
-  // Emitted when the window is closed.
   judgeWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
     judgeWindow = null
   })
 
@@ -75,7 +57,7 @@ app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
 //   if (process.platform !== 'darwin') {
-    app.quit()
+  app.quit()
 //   }
 })
 

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import KeyboardEventHandler from 'react-keyboard-event-handler'
-import Board from './board.js'
+import Board from './board'
 
 const { ipcRenderer } = window.require('electron');
 
@@ -13,6 +13,7 @@ class Console extends Component {
         this.resetGame(currentGame)
 
         this.state = {
+            window: "Console",
             test: 'nothing',
             gameData: gameData,
             currentGame: currentGame
@@ -46,7 +47,7 @@ class Console extends Component {
     render() {
         return (
             <div style={{height:"100%"}}> {/*necessary div for KeyboardEventHandler*/}
-                {this.state.test}
+                Judge Panel
                 <Board 
                     survey={this.state.currentGame} 
                     admin={true}

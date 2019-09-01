@@ -22,7 +22,7 @@ export default class Answer extends Component {
         return (
             <div 
                 className={"card card-container " + (this.props.answer.revealed ? 'is-flipped':'')}
-                onClick={this.updateAnswer}>
+                onClick={this.props.admin ? this.updateAnswer:''}>
                 <div className={"card index-card  card__face " + (this.props.admin ? 'admin':'')}>
                     {this.props.index}
                     {this.props.admin ? this.props.answer.text:''}

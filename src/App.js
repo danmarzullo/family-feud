@@ -24,15 +24,12 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-
-    this.updateGameData = this.updateGameData.bind(this)
-
     this.state = {
       gameData: "original"
     }
   }
 
-  updateGameData = (gameData) => {
+  updateGameData = gameData => {
     this.setState({gameData: gameData})
   }
   
@@ -40,7 +37,6 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-          {this.state.gameData}
           <Route path='/' component={App.View}/>
         </div>
       </Router>
