@@ -35,6 +35,10 @@
     align-items: center;
 }
 
+.index-card.admin {
+    font-size: 30px;
+}
+
 .answer-text {
     float: left;
 }
