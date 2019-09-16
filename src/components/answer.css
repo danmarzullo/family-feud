@@ -1,63 +1,62 @@
 .card-container {
-    transition: .75s;
-    transform-style: preserve-3d;
-    box-sizing: border-box;
-    position: relative;
-
+  transition: .75s;
+  transform-style: preserve-3d;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .card {
-    height: 100%;
-    width: 100%;
-    color: white;
-    font-weight: bold; 
-    margin: auto;
-    display: flex;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-weight: bold; 
+  margin: auto;
+  display: flex;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
 .card.index-card {
-    font-size: 60px;
-    border: 5px solid dodgerblue;
-    background-color: black;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
+  font-size: 60px;
+  border: 5px solid dodgerblue;
+  background-color: black;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
 }
 
 .card.value-card {
-    font-size: 60px;
-    border: 5px solid dodgerblue;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  font-size: 60px;
+  border: 5px solid dodgerblue;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .index-card.admin {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .answer-text {
-    float: left;
+  float: left;
 }
 
 .answer-value {
-    float: right;
-    width: 25%;
-    border: 2px solid red;
+  float: right;
+  width: 25%;
+  border: 2px solid red;
 }
 
 .card.is-flipped {
-    transform: rotateX(-180deg)
+  transform: rotateX(-180deg)
 }
 
 .card__face {
-    position: absolute;
-    backface-visibility: hidden;
+  position: absolute;
+  backface-visibility: hidden;
 }
 
 .card__face--back {
-    transform: rotateX(-180deg)
+  transform: rotateX(-180deg)
 }
