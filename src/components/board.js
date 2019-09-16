@@ -6,11 +6,8 @@ import Answer from './answer'
 export default class Board extends Component {
     constructor(props) {
         super(props)
-
-        this.answerComponents = []
-
         this.state = {
-            answers: this.props.survey.answers
+            answers: this.props.survey
         }
     }
 
@@ -22,7 +19,7 @@ export default class Board extends Component {
         var answers = this.state.answers
         answers[index-1].revealed = show
         this.setState({answers: answers})
-        this.props.updateCurrentGame(answers)
+        this.props.updateSurvey(answers)
     }
 
     render() {

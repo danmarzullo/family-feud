@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import KeyboardEventHandler from 'react-keyboard-event-handler'
 import Board from './board'
+import StrikePanel from './console/strikePanel'
 
 const { ipcRenderer } = window.require('electron');
 
@@ -9,36 +10,28 @@ class Console extends Component {
         super(props)
 
         var gameData = require('../res/surveys.json')
-        var currentGame = gameData.surveys[0]
-        this.resetGame(currentGame)
+        var survey = gameData.surveys[0]
+        this.resetSurvey(survey)
 
         this.state = {
-            window: "Console",
-            test: 'nothing',
-            gameData: gameData,
-            currentGame: currentGame
+            survey: survey,
+            scores: [
+                {name:'', score:0},
+                {name:'', score:0}
+            ]
         }
     }
 
-    updatePresentation() {
-        ipcRenderer.send('updatePresentation', 'It works!')
+    updateSurvey = (answers) => {
+        this.setState({survey: {...this.state.survey, answers: answers}})
+        this.updateBoard()
     }
 
-    // render() {
-    //     return (
-    //         <div>
-    //             test
-    //             <button onClick={this.updatePresentation}>Click Here</button>
-    //         </div>
-    //     )
-    // }
-
-    updateCurrentGame = (currentGame) => {
-        this.setState({currentGame: currentGame})
-        ipcRenderer.send('updatePresentation', currentGame)
+    updateBoard = () => {
+        ipcRenderer.send('updateBoard', this.state)
     }
 
-    resetGame(currentGame) {
+    resetSurvey(currentGame) {
         currentGame.answers.forEach(function(answer) {
             answer.revealed = false;
         })
@@ -49,10 +42,11 @@ class Console extends Component {
             <div style={{height:"100%"}}> {/*necessary div for KeyboardEventHandler*/}
                 Judge Panel
                 <Board 
-                    survey={this.state.currentGame} 
+                    survey={this.state.survey.answers} 
                     admin={true}
-                    updateCurrentGame={this.updateCurrentGame}
+                    updateSurvey={this.updateSurvey}
                     keyHandler={this.props.keyHandler}/>
+                <StrikePanel/>
                 {/* <KeyboardEventHandler
                     handleKeys={['all']}
                     onKeyEvent={(key, e) => this.keyHandler(key)}/> */}
