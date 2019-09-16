@@ -41,9 +41,14 @@ function createWindow () {
     judgeWindow = null
   })
 
-  ipcMain.on('updatePresentation', (event, gameData) => {
+  ipcMain.on('updateBoard', (event, gameData) => {
     console.log(gameData)
-    mainWindow.webContents.send('updateGameData', gameData)
+    mainWindow.webContents.send('updateBoard', gameData)
+  })
+
+  ipcMain.on('showStrikes', (event, strike) => {
+    console.log(strike)
+    mainWindow.webContents.send('showStrikes', strike)
   })
 }
 
@@ -51,6 +56,9 @@ function createWindow () {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow)
+
+// Need for controlling media from other window
+app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {

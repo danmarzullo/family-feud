@@ -1,17 +1,26 @@
 import React, {Component} from 'react'
 import './answer.css'
+import flipFile from '../res/flip.mp3'
 
 export default class Answer extends Component {
     constructor(props) {
         super(props)
-        // this.state = {
-        //     index: props.index,
-        //     answer: props.answer
-        // }
+        this.state = {
+            revealed: props.answer.revealed,
+            flipSound: new Audio(flipFile)
+        }
     }
 
     componentWillReceiveProps(newProps) {
-        this.setState({answer: this.props.answer})
+        this.playSound(newProps.answer.revealed)
+    }
+
+    playSound = (revealed) => {
+        // Only play if flip detected
+        if (this.state.revealed !== revealed) {
+            this.setState({answer: revealed})
+            this.state.flipSound.play()
+        }
     }
 
     updateAnswer = () => {
