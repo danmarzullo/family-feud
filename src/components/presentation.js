@@ -1,7 +1,9 @@
 import React, {Component, useState} from 'react'
 import KeyboardEventHandler from 'react-keyboard-event-handler'
-import Board from './board.js'
+import ScorePanel from './scorePanel'
+import Board from './board'
 import StrikePopup from './presentation/strikePopup'
+import './presentation.css'
 
 const {ipcRenderer} = window.require('electron')
 
@@ -33,7 +35,7 @@ export default class Presentation extends Component {
       gameData: currentGame,
       currentGame: currentGame,
       survey: blankSurvey,
-      scores: [
+      teams: [
         {name:'', score:0},
         {name:'', score:0}
       ]
@@ -67,7 +69,8 @@ export default class Presentation extends Component {
 
   render() {
     return (
-      <div style={{height:"100%"}}> {/*necessary div for KeyboardEventHandler*/}
+      <div id='presentation' style={{height:"100%"}}> {/*necessary div for KeyboardEventHandler*/}
+        <ScorePanel teams={this.state.teams}/>
         <Board 
           survey={this.state.survey.answers} 
           admin={false} 

@@ -21,4 +21,8 @@
   margin: auto;
   background-color: black;
   perspective: 2000px;
+  border: 10px solid yellow;
+  border-radius: 2em;
+  padding:0.5em;
+
 }

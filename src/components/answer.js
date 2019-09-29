@@ -33,7 +33,9 @@ export default class Answer extends Component {
         className={"card card-container " + (this.props.answer.revealed ? 'is-flipped':'')}
         onClick={this.props.admin ? this.updateAnswer:''}>
         <div className={"card index-card  card__face " + (this.props.admin ? 'admin':'')}>
-          {this.props.index}
+          <div class='index'>
+            {this.props.index}
+          </div>
           {this.props.admin ? this.props.answer.text:''}
         </div>
         <div className="card value-card card__face card__face--back" >

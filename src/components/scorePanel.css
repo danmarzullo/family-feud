@@ -1,0 +1,36 @@
+.strike-button {
+  width: 10%;
+  height: 10%;
+}
+
+.strike-button-panel{
+  display: inline;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  text-align: left;
+}
+
+.score-box {
+  font-size: 30px;
+  border: 10px solid black;
+  border-radius: 0.25em;
+  background-color: dodgerblue;
+  display: block;
+  float: left;
+  justify-content: center;
+  align-items: center;
+}
+
+#score_panel {
+  position: absolute;
+  width: -webkit-fill-available;
+}
+
+#team_1 {
+  float: left;
+}
+
+#team_2 {
+  float: right;
+}
