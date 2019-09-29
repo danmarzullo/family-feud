@@ -42,8 +42,10 @@ export default class Answer extends Component {
           <div className="answer-text">
             {this.props.answer.text}
           </div>
-          <div className="answer-value">
-            {this.props.answer.value}
+          <div className="answer-value-background">
+            <div className="answer-value">
+              {this.props.answer.value}
+            </div>
           </div>
         </div>
       </div>

@@ -19,6 +19,7 @@
 .card.index-card {
   font-size: 60px;
   border: 5px solid white;
+  border-style: groove;
   background-image: -webkit-gradient(
     linear,
     left top,
@@ -30,7 +31,7 @@
   background-image: -moz-linear-gradient(bottom, #63F5F0 37%, #3C92EE 79%);
   background-image: -webkit-linear-gradient(bottom, #63F5F0 37%, #3C92EE 79%);
   background-image: -ms-linear-gradient(bottom, #63F5F0 37%, #3C92EE 79%);
-  background-image: linear-gradient(to bottom, #63F5F0 37%, #3C92EE 79%);  border-style: groove;
+  background-image: linear-gradient(to bottom, #63F5F0 37%, #3C92EE 79%);  
   margin: auto;
   justify-content: center;
   align-items: center;
@@ -38,8 +39,9 @@
 
 .card.value-card {
   font-size: 60px;
-  border: 5px solid dodgerblue;
-  display: flex;
+  border: 5px solid white;
+  border-style: groove;
+  display: inline;
   justify-content: center;
   align-items: center;
   background: #3278e6; /* Old browsers */
@@ -54,13 +56,41 @@
 }
 
 .answer-text {
-  float: left;
+  position: absolute;
+  top: 50%;
+  width: 75%;
+  transform: translateY(-50%);
+  text-shadow: -1px -1px 1px #fff, 1px 1px 1px #000;
+}
+
+.answer-value-background {
+  width: 25%;
+  /* border: 2px solid red; */
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 100%;
+  transform: translateY(-50%);
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0.37, #63F5F0),
+    color-stop(0.79, #3C92EE)
+  );
+  background-image: -o-linear-gradient(bottom, #63F5F0 37%, #3C92EE 79%);
+  background-image: -moz-linear-gradient(bottom, #63F5F0 37%, #3C92EE 79%);
+  background-image: -webkit-linear-gradient(bottom, #63F5F0 37%, #3C92EE 79%);
+  background-image: -ms-linear-gradient(bottom, #63F5F0 37%, #3C92EE 79%);
+  background-image: linear-gradient(to bottom, #63F5F0 37%, #3C92EE 79%);  
 }
 
 .answer-value {
-  float: right;
-  width: 25%;
-  border: 2px solid red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: -1px -1px 1px #fff, 1px 1px 1px #000;
 }
 
 .card.is-flipped {
