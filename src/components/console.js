@@ -16,6 +16,7 @@ class Console extends Component {
 		this.resetSurvey(survey)
 
 		this.state = {
+			currentScore: 0,
 			survey: survey,
 			teams: [
 				{name:'Team 1', score:0},
@@ -25,8 +26,14 @@ class Console extends Component {
 	}
 
 	updateSurvey = (answers) => {
-		this.setState({survey: {...this.state.survey, answers: answers}})
-		this.updateBoard()
+		let currentScore = 0
+		for (let answer in answers) {
+			currentScore += answers[answer].revealed ? answers[answer].value : 0
+		}
+		this.setState({
+			currentScore: currentScore,
+			survey: {...this.state.survey, answers: answers}
+		}, () => this.updateBoard())
 	}
 
 	updateBoard = () => {
@@ -55,7 +62,7 @@ class Console extends Component {
 		return (
 			<div style={{height:"100%"}}> {/*necessary div for KeyboardEventHandler*/}
 				Judge Panel
-				<ScorePanel teams={this.state.teams} updateTeamNames={this.updateTeamNames} />
+				<ScorePanel teams={this.state.teams} updateTeamNames={this.updateTeamNames} currentScore={this.state.currentScore}/>
 				<Board 
 					survey={this.state.survey.answers} 
 					admin={true}

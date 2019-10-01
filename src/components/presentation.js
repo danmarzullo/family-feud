@@ -34,6 +34,7 @@ export default class Presentation extends Component {
       test: 'nothing',
       gameData: currentGame,
       currentGame: currentGame,
+      currentScore: 0,
       survey: blankSurvey,
       teams: [
         {name:'', score:0},
@@ -70,7 +71,7 @@ export default class Presentation extends Component {
   render() {
     return (
       <div id='presentation' style={{height:"100%"}}> {/*necessary div for KeyboardEventHandler*/}
-        <ScorePanel teams={this.state.teams}/>
+        <ScorePanel teams={this.state.teams} currentScore={this.state.currentScore}/>
         <Board 
           survey={this.state.survey.answers} 
           admin={false} 

@@ -17,7 +17,7 @@ export default class Answer extends Component {
 
   playSound = (revealed) => {
     // Only play if flip detected
-    if (this.state.revealed !== revealed) {
+    if (revealed == true && this.state.revealed == false && !this.props.admin) {
       this.setState({answer: revealed})
       this.state.flipSound.play()
     }

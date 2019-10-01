@@ -19,20 +19,25 @@ export default class ScorePanel extends Component {
     return (
       <div id='score_panel'>
         <div id='team_1' className='score-box'>
-          <input 
+          <input class='team-name-input'
             type='text'
             value={this.props.teams[0].name} 
             placeholder='Team 1'
             onChange={this.updateTeam1}/>
-          <p>{this.props.teams[0].score}</p>
+          <div class='team-score'>{this.props.teams[0].score}</div>
+        </div>
+        <div class='current-score-box'>
+          <div class='current-score'>
+            {this.props.currentScore}
+          </div>
         </div>
         <div id='team_2' className='score-box'>
-        <input 
+        <input class='team-name-input'
             type='text'
             value={this.props.teams[1].name} 
             placeholder='Team 2'
             onChange={this.updateTeam2}/>
-          <p>{this.props.teams[1].score}</p>
+          <div class='team-score'>{this.props.teams[1].score}</div>
         </div>
       </div>
     )

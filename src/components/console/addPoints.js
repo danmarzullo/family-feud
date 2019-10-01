@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './strikePanel.css'
+import './addPoints.css'
 import Modal from '../modal'
 import strike from '../../res/strike.png'
 
@@ -26,9 +26,9 @@ export default class AddPoints extends Component {
 
   render() {
     return (
-      <div className='strike-button-panel'>
-          <button className='' onClick={() => this.addPointsToTeam(1)}> Add points to Team 1 </button>
-          <button className='' onClick={() => this.addPointsToTeam(2)}> Add points to Team 2 </button>
+      <div className='add-points-button-panel'>
+          <button className='add-points-button' onClick={() => this.addPointsToTeam(1)}> Add points to Team 1 </button>
+          <button className='add-points-button' onClick={() => this.addPointsToTeam(2)}> Add points to Team 2 </button>
       </div>
     )
   }

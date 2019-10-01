@@ -12,6 +12,7 @@
 }
 
 .score-box {
+  color: white;
   font-size: 30px;
   border: 10px solid black;
   border-radius: 0.25em;
@@ -20,11 +21,50 @@
   float: left;
   justify-content: center;
   align-items: center;
+  width: 30%;
+}
+
+.team-name-input {
+  color: white;
+  background-color: dodgerblue;
+  border-color: transparent;
+  font-size: 45px;
+  text-align: center;
+  width: 100%;
+  box-sizing : border-box;
+}
+
+.team-score {
+  font-size: 45px;
+  font-weight: bold;
+  margin-bottom: 5%;
+}
+
+.current-score-box {
+  color: white;
+  border: 10px solid black;
+  border-radius: 0.25em;
+  background-color: dodgerblue;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+
+.current-score {
+  font-size: 80px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #score_panel {
   position: absolute;
   width: -webkit-fill-available;
+  display: flex;
+  justify-content: space-between;
 }
 
 #team_1 {
