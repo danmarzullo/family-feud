@@ -85,11 +85,3 @@ export default class Presentation extends Component {
     )
   }
 }
-
-const myComponent = (props) => {
-  const myCounter = useState(0)
-
-  return (
-    <div></div>
-  )
-}
