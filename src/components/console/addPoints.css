@@ -1,0 +1,12 @@
+.add-points-button {
+  height: 100%;
+  
+}
+
+.add-points-button-panel{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  text-align: left;
+  height: 10%;
+}

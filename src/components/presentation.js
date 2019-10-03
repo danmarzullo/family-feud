@@ -1,94 +1,87 @@
 import React, {Component, useState} from 'react'
 import KeyboardEventHandler from 'react-keyboard-event-handler'
-import Board from './board.js'
+import ScorePanel from './scorePanel'
+import Board from './board'
 import StrikePopup from './presentation/strikePopup'
+import './presentation.css'
 
 const {ipcRenderer} = window.require('electron')
 
-// const fs = require('fs');
-
-
 export default class Presentation extends Component {
-    constructor(props) {
-        super(props)
-        this.initializeState()
+  constructor(props) {
+    super(props)
+    this.initializeState()
+  }
+
+  componentDidMount() {
+    ipcRenderer.on('updateBoard', (event, state) => {
+      console.log(state);
+      this.setState(state);
+    })
+  }
+
+  initializeState() {
+    let answers = []
+    for (let i = 0; i < 8; i++) {
+      answers.push({text: "", value: 0})
     }
+    const blankSurvey = {answers: answers}
 
-    componentDidMount() {
-        ipcRenderer.on('updateBoard', (event, state) => {
-            console.log(state);
-            this.setState(state);
-          });
+    var currentGame = blankSurvey
+    this.resetGame(currentGame)
+
+    this.state = {
+      test: 'nothing',
+      gameData: currentGame,
+      currentGame: currentGame,
+      currentScore: 0,
+      survey: blankSurvey,
+      teams: [
+        {name:'', score:0},
+        {name:'', score:0}
+      ]
     }
+  }
 
-    initializeState() {
-        let answers = []
-        for (let i = 0; i < 8; i++) {
-            answers.push({text: "", value: 0})
-        }
-        const blankSurvey = {answers: answers}
+  selectSurvey() {
+    var currentGame = this.state.gameData.surveys[0]
+    this.resetGame(currentGame)
+    this.setState({currentGame})
+  }
 
-        var currentGame = blankSurvey
-        this.resetGame(currentGame)
+  resetGame(currentGame) {
+    currentGame.answers.forEach(function(answer) {
+      answer.revealed = false;
+    })
+  }
 
-        this.state = {
-            test: 'nothing',
-            gameData: currentGame,
-            currentGame: currentGame,
-            survey: blankSurvey,
-            scores: [
-                {name:'', score:0},
-                {name:'', score:0}
-            ]
-        }
+  keyHandler(key) {
+    console.log("Key:" + key)
+    if (key > 0 && key < 9) {
+      const currentGame = this.state.currentGame
+      currentGame.answers[key-1].revealed = !currentGame.answers[key-1].revealed
+      this.setState({currentGame: currentGame})
     }
+  }
 
-    selectSurvey() {
-        var currentGame = this.state.gameData.surveys[0]
-        this.resetGame(currentGame)
-        this.setState({currentGame})
-    }
+  updateSurvey = (survey) => {
+    this.setState({survey: survey})
+  }
 
-    resetGame(currentGame) {
-        currentGame.answers.forEach(function(answer) {
-            answer.revealed = false;
-        })
-    }
-
-    keyHandler(key) {
-        console.log("Key:" + key)
-        if (key > 0 && key < 9) {
-            const currentGame = this.state.currentGame
-            currentGame.answers[key-1].revealed = !currentGame.answers[key-1].revealed
-            this.setState({currentGame: currentGame})
-        }
-    }
-
-    updateSurvey = (survey) => {
-        this.setState({survey: survey})
-    }
-
-    render() {
-        return (
-            <div style={{height:"100%"}}> {/*necessary div for KeyboardEventHandler*/}
-                <Board 
-                    survey={this.state.survey.answers} 
-                    admin={false} 
-                    updateCurrentGame={this.updateSurvey}
-                    keyHandler={this.props.keyHandler}/>
-                <StrikePopup/>
-                <KeyboardEventHandler
-                    handleKeys={['all']}
-                    onKeyEvent={(key, e) => this.keyHandler(key)}/>
-            </div>
-        )
-    }
-}
-
-const myComponent = (props) => {
-    const myCounter = useState(0)
-
+  render() {
     return (
-        <div></div>
+      <div id='presentation' style={{height:"100%"}}> {/*necessary div for KeyboardEventHandler*/}
+        <ScorePanel teams={this.state.teams} currentScore={this.state.currentScore}/>
+        <Board 
+          survey={this.state.survey.answers} 
+          admin={false} 
+          updateCurrentGame={this.updateSurvey}
+          keyHandler={this.props.keyHandler}/>
+        <StrikePopup/>
+        <KeyboardEventHandler
+          handleKeys={['all']}
+          onKeyEvent={(key, e) => this.keyHandler(key)}/>
+      </div>
     )
+  }
 }

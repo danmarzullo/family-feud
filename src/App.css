@@ -2,6 +2,7 @@
   text-align: center;
   /* min-width: 125vh; */
   min-height: 45vw;
+  text-shadow: -1px -1px 1px #fff, 1px 1px 1px #000;
 }
 
 .App-logo {
