@@ -35,7 +35,7 @@
   ],
   "devDependencies": {
     "concurrently": "^4.1.2",
-    "electron": "^3.1.13",
+    "electron": "^13.6.6",
     "foreman": "^3.0.1",
     "wait-on": "^3.3.0"
   }
